@@ -25,12 +25,17 @@ def template():
    
     for i in range (8,max_row+1):
         c_temp = sheet.cell(i,1)
+        ##Filter to pick out templates
         if c_temp.value == "CNR":
         
             document = MailMerge(template_1)
+            ## Ideally, i can set up the transfer between Word and Excel 
+            #This can be solved by creating an index from variable names and itterate. Also, possibly and iloc solution instead of sheet cell plugs
             name = sheet.cell(2,2)
             matter = sheet.cell(3,2)
             dob = sheet.cell(4,2)
+            # Might find a "matching value" search to automate assignment from excel cell variables to merge fields
+            ## After preseting mail merge fields, this operation needs to be automated, hopefully by itteration.
             document.merge(Name = name.value)
             document.merge(Matter = str(matter.value))
             # need to add date formating
