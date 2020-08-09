@@ -6,12 +6,12 @@ import shutil
 today = datetime.now()
 wdir = os.chdir(r"C:\Users\anton\OneDrive\Desktop\Working folder")
 ## Creating a new month folder/ accessing current month folder
-##insert datetime month format as string instead of August
-if not os.path.exists('August'):
-    os.makedirs('August')
+month = today.strftime("%B")
+if not os.path.exists(month):
+    os.makedirs(month)
     
 ## create a folder with name of the day and date / find a better solution here  
-os.chdir("August")
+os.chdir(month)
 os.mkdir(today.strftime("%B %d"))
 os.chdir(today.strftime("%B %d"))
 
