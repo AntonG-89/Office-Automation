@@ -6,7 +6,7 @@ import shutil
 ##First function of the day: Create daily folder, populate with worksheets, open the directory for work
 def day_start()
     today = datetime.now()
-    wdir = os.chdir(r"C:\Users\anton\OneDrive\Desktop\Working folder")
+    os.chdir(r"C:\Users\anton\OneDrive\Desktop\Working folder")
     ## Creating a new month folder/ accessing current month folder
     month = today.strftime("%B")
     if not os.path.exists(month):
