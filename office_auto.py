@@ -1,16 +1,12 @@
-# -*- coding: utf-8 -*-
-"""
-Spyder Editor
-
-This is a temporary script file.
-"""
 import os 
 from datetime import datetime
 import shutil
 import winshell
+import pandas as pd
+
 os.chdir(r"C:\Users\anton\OneDrive\Desktop\Working folder")
 base_root = r"C:\Users\anton\OneDrive\Desktop\Working folder"
-
+client_list = os.listdir(r"C:\Users\anton\OneDrive\Desktop\Working folder\Client Base Hidden")
 
 def start_day():
      
@@ -43,7 +39,7 @@ def start_day():
     ### List of clients for start_client function, need to itirate over list
        
 def start_client():
-    client_list = os.listdir(r"C:\Users\anton\OneDrive\Desktop\Working folder\Client Base Hidden")
+    global client_list
     openf = input("Enter client's info:Lastname_number :\n")
     # Bool to find if the folder already exists
     file_exists = False
