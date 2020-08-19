@@ -12,9 +12,8 @@ os.chdir(r"C:\Users\anton\OneDrive\Desktop\Working folder")
 base_root = r"C:\Users\anton\OneDrive\Desktop\Working folder"
 
 
-def day_start():
-    
-    
+def start_day():
+     
     today = datetime.now()
     os.chdir(r"C:\Users\anton\OneDrive\Desktop\Working folder")
     ## Creating a new month folder/ accessing current month folder
