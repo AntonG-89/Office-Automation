@@ -3,7 +3,7 @@ from datetime import datetime
 import shutil
 import winshell
 import pandas as pd
-
+# all hardcoded paths need to be changed to path.join solutions for scalability
 os.chdir(r"C:\Users\anton\OneDrive\Desktop\Working folder")
 base_root = r"C:\Users\anton\OneDrive\Desktop\Working folder"
 client_list = os.listdir(r"C:\Users\anton\OneDrive\Desktop\Working folder\Client Base Hidden")
