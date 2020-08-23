@@ -12,7 +12,7 @@ call_log = pd.read_excel(call_path)
 yes_rows = call_log.loc[call_log["Reached?"] == "Yes"]
 no_rows = call_log.loc[call_log["Reached?"] == "No"]
 
-## using pd.ExcelWriter append function to add the "Yes" to the "Follow Ups" worksheet. 
+## using pd.ExcelWriter append function to add the "Yes" rows to the "Follow Ups" worksheet. 
 ## This sheet tracks when the records are imported and provides reminders when follow ups are due.
 wb = openpyxl.load_workbook(call_path)
 writer = pd.ExcelWriter(call_path, engine = "openpyxl", mode= "a")
