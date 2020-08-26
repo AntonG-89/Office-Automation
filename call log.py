@@ -8,17 +8,14 @@ call_path = r"C:\Users\anton\OneDrive\Desktop\Working folder\Working files\Call 
 ## Opening a Call Log
 call_log = pd.read_excel(call_path)
 
-## Creating data frames with rows, sorted by Yes/No in "Reached?"
-#yes_rows = call_log.loc[call_log["Reached?"] == "Yes"]
-#no_rows = call_log.loc[call_log["Reached?"] == "No"]
-
 ## using pd.ExcelWriter append function to add the "Yes" rows to the "Follow Ups" worksheet. 
 ## This sheet tracks when the records are imported and provides reminders when follow ups are due.
 wb = openpyxl.load_workbook(call_path)
 writer = pd.ExcelWriter(call_path, engine = "openpyxl", mode= "a")
 ## This is a weird function. writer.sheets and writer.book have to be created for the append function to work properly.
+## explicit statement of .copy() for yes_rows dataframe. Default .view() leads to a SettingWithCopyWarning. 
 def move_fus():
-    yes_rows = call_log.loc[call_log["Reached?"] == "Yes"]
+    yes_rows = call_log.loc[call_log["Reached?"] == "Yes"].copy()
     yes_cols(yes_rows)
     writer.sheets = dict((ws.title, ws) for ws in wb.worksheets)
     writer.book = wb    
