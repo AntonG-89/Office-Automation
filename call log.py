@@ -8,6 +8,13 @@ call_path = r"C:\Users\anton\OneDrive\Desktop\Working folder\Working files\Call 
 ## Opening a Call Log
 call_log = pd.read_excel(call_path)
 
+## Creating time categories for follow up function (used in yes_cols())
+today = datetime.datetime.now()
+week = today + datetime.timedelta(days=7)
+two_weeks = today + datetime.timedelta(days=14)
+month = today + datetime.timedelta(days=30)
+two_month = today + datetime.timedelta(days=60)
+three_month = today + datetime.timedelta(days=90)
 ## using pd.ExcelWriter append function to add the "Yes" rows to the "Follow Ups" worksheet. 
 ## This sheet tracks when the records are imported and provides reminders when follow ups are due.
 wb = openpyxl.load_workbook(call_path)
@@ -27,6 +34,26 @@ def move_fus():
 ##This is a function to be used to transform Yes_rows df
 def yes_cols(x):
     
+    ## adding column with date request was made
     x["Record Date"] = pd.to_datetime("today").strftime("%x")
+    ## adding column with follow up dates based on user input in Excel through data validation menu
+    fol_up = []
+    for period in x["Follow up"]:
+        if period == "Done":
+            fol_up.append("Archive")
+        elif period == "Week":
+            fol_up.append(week.strftime("%x")) 
+        elif period == "Two Weeks":
+            fol_up.append(two_weeks.strftime("%x"))
+        elif period == "1 Month":
+            fol_up.append(month.strftime("%x"))
+        elif period == "2 Month":
+            fol_up.append(two_month.strftime("%x"))
+        elif period == "3 Month":
+            fol_up.append(three_month.strftime("%x"))
+        else:
+            fol_up.append("NaN")
+            
+    x["Follow up date"] = fol_up
 
 
