@@ -27,7 +27,14 @@ def move_fus():
     writer.sheets = dict((ws.title, ws) for ws in wb.worksheets)
     writer.book = wb    
     yes_rows.to_excel(writer, sheet_name ="Sheet1", startrow = wb["Sheet1"].max_row, startcol = 0,  header = False, index =False)
-
+    
+    ## Re-writing the Daily Calls to only include calls where noone was reached
+    no_rows = call_log.loc[call_log["Reached?"] == "No"].copy()
+    no_rows.to_excel(writer, sheet_name = "Daily Calls", startrow = 1, header = False, index = False)
+    ##deleting remaining rows in the sheet
+    del_rows = len(no_rows)
+    print(del_rows)
+    ws.delete_rows(del_rows+1,100 )
     writer.save()
     writer.close()
   
